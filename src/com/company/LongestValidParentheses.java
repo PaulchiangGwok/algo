@@ -7,6 +7,6 @@ public class LongestValidParentheses {
     }
 
     public static int longestValidParentheses(String s) {
-
+        return 0;
     }
 }
