@@ -23,9 +23,9 @@ public class MaxProduct5330 {
         //    {1, 1, 1, 1, 1}};
         //int k = 3;
         //int[] input = {1000, 1000, 3, 7};
-        Object res =
-            KWeakestRows.maxProduct(input);
-        System.out.println();
+        //Object res =
+        //    KWeakestRows.maxProduct(input);
+        //System.out.println();
     }
 
     public int maxProduct(TreeNode root) {
