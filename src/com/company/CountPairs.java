@@ -11,7 +11,7 @@ import java.util.Set;
 public class CountPairs {
 
     public static void main(String[] args) {
-        int[] req = {1,1,1,3,3,3,7};
+        int[] req = { 1, 1, 1, 3, 3, 3, 7 };
         System.out.println(countPairs(req));
     }
 
@@ -34,7 +34,7 @@ public class CountPairs {
             int count = entry.getValue();
             if (count > 1 && isPowerOfTwo(num + num)) {
                 // 判断本身是不是能当结果
-                res = res + (combination(count,2) % 1_000_000_007);
+                res = res + (combination(count, 2) % 1_000_000_007);
             }
             nums[i] = num;
             i++;
@@ -57,17 +57,17 @@ public class CountPairs {
         }
         return (n & (n - 1)) == 0;
     }
-    
+
     private static int combination(int n, int k) {
-		int a=1,b=1;
-		if(k>n/2) {
-			k=n-k;
-		}
-		for(int i=1;i<=k;i++) {
-			a*=(n+1-i)% 1_000_000_007;
-			b*=i% 1_000_000_007;
-		}
-		return a/b;
-	}
+        int a = 1, b = 1;
+        if (k > n / 2) {
+            k = n - k;
+        }
+        for (int i = 1; i <= k; i++) {
+            a *= (n + 1 - i) ;
+            b *= i;
+        }
+        return a / b;
+    }
 
 }
