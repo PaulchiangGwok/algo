@@ -1,12 +1,9 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * https://leetcode-cn.com/problems/climbing-stairs/
  */
-public class Test {
+public class LongestPalindrome {
     public static void main(String[] args) {
 
     }
