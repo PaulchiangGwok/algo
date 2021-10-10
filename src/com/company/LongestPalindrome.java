@@ -5,7 +5,7 @@ package com.company;
  */
 public class LongestPalindrome {
     public static void main(String[] args) {
-        System.out.println(longestPalindrome("ababd"));
+        System.out.println(longestPalindrome("ac"));
     }
 
     public static String longestPalindrome(String s) {
@@ -13,24 +13,29 @@ public class LongestPalindrome {
             return s;
         }
 
+        if(s.length() == 2){
+            if(s.charAt(0) == s.charAt(1)){
+                return s;
+            } else {
+                return String.valueOf(s.charAt(0));
+            }
+        }
+
         String res = "";
         //边界的两个不需要判断
         for (int i = 1; i < s.length() - 2; i++) {
             //先判断是中心对称还是轴对称
+            String tmp;
             if (s.charAt(i) == s.charAt(i + 1)) {
                 //中心对称
-                String tmp = check(s, i, i + 1);
-
-                if(tmp.length() > res.length()){
-                    res = tmp;
-                }
+                tmp = check(s, i, i + 1);
             } else {
                 //测试轴对称
-                String tmp = check(s, i, i);
+                tmp = check(s, i, i);
 
-                if(tmp.length() > res.length()){
-                    res = tmp;
-                }
+            }
+            if(tmp.length() > res.length()){
+                res = tmp;
             }
         }
         return res;
