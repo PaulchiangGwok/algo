@@ -10,9 +10,9 @@ public class KthSmallest {
 
     public static int dfs(TreeNode root, int k){
         if(root.left != null){
-            k = dfs(root,k);
+            k = dfs(root.left,k);
 
-            if(k < 0){
+            if(k <= 0){
                 return k;
             }
         }
@@ -23,8 +23,8 @@ public class KthSmallest {
         }
 
         if(root.right != null){
-           k = dfs(root,k);
-           if(k < 0){
+           k = dfs(root.right,k);
+           if(k <= 0){
                return k;
            }
         }
