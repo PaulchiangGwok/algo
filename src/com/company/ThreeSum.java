@@ -11,46 +11,42 @@ public class ThreeSum {
 
     public static List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
-        int lidx = 0;
-        int ridx = nums.length - 1;
-
-        Set<String> res = new HashSet<>();
-
-        boolean hasZero = false;
-        for (int n : nums) {
-            if (n == 0) {
-                hasZero = true;
+        List<List<Integer>> ans = new ArrayList<List<Integer>>();
+        int n = nums.length;
+        for(int first = 0; first < n; first++){
+                // 需要和上一次枚举的数不相同
+            if (first > 0 && nums[first] == nums[first - 1]) {
+                continue;
             }
-        }
 
-        while (lidx + 1 < ridx - 1) {
-            if (nums[lidx] + nums[ridx] > 0) {
-                if (nums[lidx] + nums[ridx] + nums[lidx + 1] == 0) {
-                    res.add(nums[lidx] + "," + nums[lidx + 1] + "," + nums[ridx]);
+            // c 对应的指针初始指向数组的最右端
+            int third = n - 1;
+            int target = -nums[first];
+
+            for(int second = first + 1;second<n;second++){
+                //需要和上一次枚举的数不相同
+                if (second > first + 1 && nums[second] == nums[second - 1]) {
+                    continue;
                 }
-                lidx++;
-            } else if (nums[lidx] + nums[ridx] < 0) {
-                if (nums[lidx] + nums[ridx] + nums[ridx - 1] == 0) {
-                    res.add(nums[lidx] + "," + nums[ridx - 1] + "," + nums[ridx]);
+
+                // 需要保证 b 的指针在 c 的指针的左侧 且找到大于target的结果
+                while (second < third && nums[second] + nums[third] > target) {
+                    third--;
                 }
-                ridx--;
-            } else {
-                if (hasZero) {
-                    res.add(nums[lidx] + ",0," + nums[ridx]);
+
+                // 如果指针重合，随着 b 后续的增加
+                // 就不会有满足 a+b+c=0 并且 b<c 的 c 了，可以退出循环
+                if (second == third) {
+                    break;
                 }
-                lidx++;
+                if (nums[second] + nums[third] == target) {
+                    List<Integer> list = new ArrayList<Integer>();
+                    list.add(nums[first]);
+                    list.add(nums[second]);
+                    list.add(nums[third]);
+                    ans.add(list);
+                }
             }
-        }
-
-        //parse result
-        List<List<Integer>> ans = new ArrayList<>();
-        for(String s : res){
-            String[] arr = s.split(",");
-            List<Integer> t = new ArrayList<>(3);
-            t.add(Integer.parseInt(arr[0]));
-            t.add(Integer.parseInt(arr[1]));
-            t.add(Integer.parseInt(arr[2]));
-            ans.add(t);
         }
         return ans;
     }
